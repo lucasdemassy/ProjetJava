@@ -1,0 +1,32 @@
+﻿Diagramme utilisateur:
+
+
+À débattre
+
+
+Besoin utilisateur:
+        -Créer MNT aléatoirement (facultatif)
+        -Charger MNT
+        -Affichage 2D ou 3D
+        -Lire des lignes de niveau selon l’altitude rentré par l’utilisateur
+        -Lire toutes les lignes de niveau avec un pas de 10 ou 5m au choix de l’utilisateur
+        -Et ensuite, avec un affichage différents pour un second pas tous les 100 mètres par exemple. Il est donc superposé au pas précédent. Ce second pas serau au choix (ou non?) de l’utilisateur
+
+
+        
+Hypothèses:
+        -Format des données entrées? (X,Y,Z) ou juste (Z) ?
+        -MNT créer à partir de points dont on connaît les coordonnées (X,Y,Z)
+        -On suppose le MNT comme une grille régulière (équidistance entre les points)
+        -On suppose un repère 2D ou 3D arbitraire
+        -2 hypothèses à propos des courbes de niveau:
+                -Courbes de niveau passant seulement par des points du MNT
+                -Courbes de niveau passant entre les points du MNT. On suppose que l’altitude est linéaire entre ces points du MNT
+
+
+
+
+Reformulation du sujet:
+On souhaite donner à l’utilisateur un outil qui permet de visualiser en 2D ou 3D un MNT (Modèle Numérique de Terrain) à partir de données fournies (le cas échéant, un MNT sera créé aléatoirement).
+L’utilisateur pourra afficher une courbe de niveau, avec une altitude fourni par celui-ci.
+Il pourra également visualiser l’ensemble du MNT avec ses courbes de niveau dont le pas sera choisi par l’utilisateur. Puis afficher des courbes de niveau dont le pas sera plus grand, et dont l’affichage sera superposé au précédent.
