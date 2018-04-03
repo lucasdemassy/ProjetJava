@@ -1,9 +1,7 @@
 ﻿Diagramme utilisateur:
 
-lien vers le GoogleDoc:
-https://docs.google.com/document/d/1Cc6xY5rXmls_YrdbJUAPJ6n82R6ZdaDYMh7n3GmYN7c/edit
 
-À débattre
+Légende: À débattre
 
 
 Besoin utilisateur:
@@ -12,7 +10,7 @@ Besoin utilisateur:
         -Affichage 2D ou 3D
         -Lire des lignes de niveau selon l’altitude rentré par l’utilisateur
         -Lire toutes les lignes de niveau avec un pas de 10 ou 5m au choix de l’utilisateur
-        -Et ensuite, avec un affichage différents pour un second pas tous les 100 mètres par exemple. Il est donc superposé au pas précédent. Ce second pas serau au choix (ou non?) de l’utilisateur
+        -Et ensuite, avec un affichage différents pour un second pas tous les 100 mètres par exemple. Il est donc superposé au pas précédent. Ce second pas sera au choix (ou non?) de l’utilisateur
 
 
         
@@ -31,4 +29,4 @@ Hypothèses:
 Reformulation du sujet:
 On souhaite donner à l’utilisateur un outil qui permet de visualiser en 2D ou 3D un MNT (Modèle Numérique de Terrain) à partir de données fournies (le cas échéant, un MNT sera créé aléatoirement).
 L’utilisateur pourra afficher une courbe de niveau, avec une altitude fourni par celui-ci.
-Il pourra également visualiser l’ensemble du MNT avec ses courbes de niveau dont le pas sera choisi par l’utilisateur. Puis afficher des courbes de niveau dont le pas sera plus grand, et dont l’affichage sera superposé au précédent.
+Il pourra également visualiser l’ensemble du MNT avec ses courbes de niveau dont le pas sera choisi par l’utilisateur. Puis afficher des courbes de niveau dont le pas sera plus grand, avec un affichage superposé aux courbes de niveau précédentes.
