@@ -1,32 +1,60 @@
-﻿Diagramme utilisateur:
+Diagramme utilisateur:
+
+Démonolithiser le diagramme de classe
+Dispatcher les méthodes (visée: pas trop lourd)
+MNT 2D, MNT3D
+Courbe donnée par altitude, et donnée par pas
+Points créés par MNT (aléatoire, ou par import), ou par Courbe (courbe passant par ces points)
+Création de classes abstraites 
 
 
-Légende: À débattre
-
+Objectif du projet:
+Nous avons pour objectif de permettre l’affichage 2D ou 3D d’un MNT donné par l’utilisateur sans en modifier les données. L’affichage sera compréhensible et incorporera une visualisation de courbes de niveau avec différents pas.
 
 Besoin utilisateur:
-        -Créer MNT aléatoirement (facultatif)
-        -Charger MNT
-        -Affichage 2D ou 3D
-        -Lire des lignes de niveau selon l’altitude rentré par l’utilisateur
-        -Lire toutes les lignes de niveau avec un pas de 10 ou 5m au choix de l’utilisateur
-        -Et ensuite, avec un affichage différents pour un second pas tous les 100 mètres par exemple. Il est donc superposé au pas précédent. Ce second pas sera au choix (ou non?) de l’utilisateur
+	-Créer MNT aléatoirement (facultatif)
+	-Charger MNT
+	-Affichage 2D ou 3D
+	-Lire des lignes de niveau selon l’altitude rentré par l’utilisateur
+	-Lire toutes les lignes de niveau avec un pas au choix de l’utilisateur
+	-Et ensuite, avec un affichage différents pour un second pas tous les 100 mètres par exemple. Il est donc superposé au pas précédent. de l’utilisateur. Ce second pas sera au choix.
 
-
-        
+	
 Hypothèses:
-        -Format des données entrées? (X,Y,Z) ou juste (Z) ?
-        -MNT créer à partir de points dont on connaît les coordonnées (X,Y,Z)
-        -On suppose le MNT comme une grille régulière (équidistance entre les points)
-        -On suppose un repère 2D ou 3D arbitraire
-        -2 hypothèses à propos des courbes de niveau:
-                -Courbes de niveau passant seulement par des points du MNT
-                -Courbes de niveau passant entre les points du MNT. On suppose que l’altitude est linéaire entre ces points du MNT
-
-
-
+	-Qu’importe le format des données. Des conversions seront effectuées. Nous utiliserons cependant un format type liste de points avec 3 coordonnées, pour nous simplifier la tâche
+	-MNT créer à partir de points dont on connaît les coordonnées (X,Y,Z)
+	-On suppose le MNT comme un nuage de point
+	-On suppose un repère 2D ou 3D arbitraire
+	-2 hypothèses à propos des courbes de niveau:
+		-Courbes de niveau passant seulement sur des points du MNT
+		-Courbes de niveau passant entre les points du MNT déjà existant. On suppose que l’altitude est linéaire entre ces points du MNT. On créera donc un point intermédiaire entre deux points existants du MNT.
+	
 
 Reformulation du sujet:
 On souhaite donner à l’utilisateur un outil qui permet de visualiser en 2D ou 3D un MNT (Modèle Numérique de Terrain) à partir de données fournies (le cas échéant, un MNT sera créé aléatoirement).
-L’utilisateur pourra afficher une courbe de niveau, avec une altitude fourni par celui-ci.
-Il pourra également visualiser l’ensemble du MNT avec ses courbes de niveau dont le pas sera choisi par l’utilisateur. Puis afficher des courbes de niveau dont le pas sera plus grand (celui-ci est choisi par défaut), avec un affichage superposé aux courbes de niveau précédentes.
+L’utilisateur pourra afficher une ou plusieurs courbe(s) de niveau, avec une altitude fourni par celui-ci.
+Il pourra également visualiser l’ensemble du MNT avec ses courbes de niveau dont le pas sera choisi par l’utilisateur. Puis afficher des courbes de niveau dont le pas sera plus grand, avec un affichage superposé aux courbes de niveau précédentes.
+
+
+
+Rapport d’analyse
+
+Nous avons pour objectif de permettre l’affichage 2D ou 3D d’un MNT donné par l’utilisateur sans en modifier les données. L’affichage sera compréhensible et incorporera une visualisation de courbes de niveau avec différents pas. Notre projet informatique devra répondre aux nombreux besoins utilisateurs.
+
+Le programme devra évidemment charger un MNT donné par l’utilisateur. Le cas échéant, un MNT sera créé aléatoirement. L’affichage de celui-ci en 2D, et/ou en 3D est bien sûr attendu. De même la visualisation de courbes de niveau selon une altitude, ou un pas fourni par l’utilisateur est également prévu. Enfin, avec un affichage différents, l’utilisateur entrera un second pas plus important et affichera donc des courbes de niveau en superposition aux courbes précédentes.
+
+Afin de rendre ce projet possible nous envisagerons un certain nombre d’hypothèses simplificatrices. Les donnés entrées ou générées en premier lieu seront sous la forme de listes de points, comprenant 3 coordonnées (x,y,z). Le MNT sera alors un nuage de points, construit à partir d’une liste de points.
+Pour les courbes de niveau, on considérera dans un premier temps qu’elles ne peuvent passer que par des points déjà existants, puis qu’elles pourront passer entre 2 points déjà présents. Pour cela on supposera que l’altitude varie linéairement entre ces 2 points. 
+
+
+Explocation des diffé
+
+
+
+
+Pour résumer :
+
+On souhaite donner à l’utilisateur un outil qui permet de visualiser en 2D ou 3D un MNT (Modèle Numérique de Terrain) à partir de données fournies (le cas échéant, un MNT sera créé aléatoirement).
+L’utilisateur pourra afficher une ou plusieurs courbe(s) de niveau, avec une altitude fourni par celui-ci.
+Il pourra également visualiser l’ensemble du MNT avec ses courbes de niveau dont le pas sera choisi par l’utilisateur. Puis afficher des courbes de niveau dont le pas sera plus grand, avec un affichage superposé aux courbes de niveau précédentes.
+
