@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="projet_MNT" company="" webLink="http://" view-date="2018-03-26" view-index="0" gantt-divider-location="300" resource-divider-location="300" version="2.8.6" locale="fr_FR">
+<?xml version="1.0" encoding="UTF-8"?><project name="projet_MNT" company="" webLink="http://" view-date="2018-04-02" view-index="0" gantt-divider-location="300" resource-divider-location="300" version="2.8.6" locale="fr">
     <description/>
-    <view zooming-state="default:6" id="gantt-chart">
+    <view zooming-state="default:5" id="gantt-chart">
         <field id="tpd3" name="Nom" width="167" order="0"/>
         <field id="tpd4" name="Date de début" width="65" order="1"/>
         <field id="tpd5" name="Date de fin" width="64" order="2"/>
-        <timeline><![CDATA[3,8]]></timeline>
-        <option id="color.recent"><![CDATA[#00cccc #006600 #ffff33 #ff9900 #ff0033]]></option>
+        <timeline><![CDATA[3,9]]></timeline>
+        <option id="color.recent"><![CDATA[#cc6600 #660066 #ff6666 #009999 #ffff00 #cc0000 #006600 #00cccc #ffff33 #ff9900]]></option>
     </view>
     <view id="resource-table">
         <field id="0" name="Nom" width="210" order="0"/>
@@ -96,13 +96,36 @@
         <task id="0" name="Analyse UML" color="#00cccc" meeting="false" start="2018-04-03" duration="5" complete="0" thirdDate="2018-04-03" thirdDate-constraint="0" expand="true">
             <depend id="3" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="3" name="Développement" color="#ff0033" meeting="false" start="2018-04-10" duration="25" complete="0" thirdDate="2018-04-09" thirdDate-constraint="0" expand="true">
-            <depend id="8" type="2" difference="0" hardness="Rubber"/>
+        <task id="3" name="Dev architecture" color="#ff0033" meeting="false" start="2018-04-10" duration="2" complete="0" thirdDate="2018-04-10" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Développement :
+-des classes principales
+-l'architecture du programme
+-constructeurs, getteur, setteur
+]]></notes>
+            <depend id="22" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="6" name="Soutenance" color="#ff9900" meeting="false" start="2018-05-25" duration="1" complete="0" thirdDate="2018-05-23" thirdDate-constraint="0" expand="true"/>
-        <task id="8" name="Préparation soutenance" color="#006600" meeting="false" start="2018-05-18" duration="4" complete="0" thirdDate="2018-05-17" thirdDate-constraint="0" expand="true">
+        <task id="22" name="Dev méthode 1" color="#ff6666" meeting="false" start="2018-04-12" duration="10" complete="0" thirdDate="2018-04-12" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Développement des méthodes essentielles au programme :
+-méthode calcul courbes de niveau
+-Affichage 2D, 3D simple ]]></notes>
+            <depend id="37" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="37" name="Dev méthode 2" color="#8cb6ce" meeting="false" start="2018-04-26" duration="10" complete="0" thirdDate="2018-04-26" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Développement :
+-des fonctions avancées/supplémentaires
+-Bonus
+-Affichage 3D (java 3D ?)
+-courbes ipsométriques lisses (en dégradé)]]></notes>
+        </task>
+        <task id="41" name="Délais" color="#660066" meeting="false" start="2018-05-15" duration="2" complete="0" thirdDate="2018-05-16" thirdDate-constraint="0" expand="true">
+            <depend id="9" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="9" name="Préparation soutenance" color="#006600" meeting="false" start="2018-05-17" duration="2" complete="0" thirdDate="2018-05-17" thirdDate-constraint="0" expand="true">
             <depend id="6" type="2" difference="0" hardness="Strong"/>
         </task>
+        <task id="6" name="Soutenance" color="#ff9900" meeting="false" start="2018-05-22" duration="2" complete="0" thirdDate="2018-05-23" thirdDate-constraint="0" expand="true"/>
+        <task id="14" name="Code + Rapport de synthèse" color="#ffff00" meeting="false" start="2018-04-09" duration="26" complete="0" thirdDate="2018-04-09" thirdDate-constraint="0" expand="true"/>
+        <task id="51" name="Rapport d'analyse" color="#cc6600" meeting="false" start="2018-04-03" duration="11" complete="0" thirdDate="2018-04-03" thirdDate-constraint="0" expand="true"/>
     </tasks>
     <resources/>
     <allocations/>
