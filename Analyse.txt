@@ -29,4 +29,4 @@ Hypothèses:
 Reformulation du sujet:
 On souhaite donner à l’utilisateur un outil qui permet de visualiser en 2D ou 3D un MNT (Modèle Numérique de Terrain) à partir de données fournies (le cas échéant, un MNT sera créé aléatoirement).
 L’utilisateur pourra afficher une courbe de niveau, avec une altitude fourni par celui-ci.
-Il pourra également visualiser l’ensemble du MNT avec ses courbes de niveau dont le pas sera choisi par l’utilisateur. Puis afficher des courbes de niveau dont le pas sera plus grand, avec un affichage superposé aux courbes de niveau précédentes.
+Il pourra également visualiser l’ensemble du MNT avec ses courbes de niveau dont le pas sera choisi par l’utilisateur. Puis afficher des courbes de niveau dont le pas sera plus grand (celui-ci est choisi par défaut), avec un affichage superposé aux courbes de niveau précédentes.
