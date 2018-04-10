@@ -11,6 +11,34 @@ public class Point {
 		this.setZ(z);
 	}
 	
+	public String toString(){
+		return "x= " + this.x + " y= " + this.y + " z= " + this.z + "\n";
+	}
+	
+	public double getX() {
+		return x;
+	}
+
+	public void setX(double x) {
+		this.x = x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public void setY(double y) {
+		this.y = y;
+	}
+
+	public double getZ() {
+		return z;
+	}
+
+	public void setZ(double z) {
+		this.z = z;
+	}
+	
 	public static double[] pointIntermediaire(Point point1, Point point2, double altitude)	{
 		if ((altitude <= point1.getZ() & altitude >= point2.getZ()) | (altitude <= point2.getZ() & altitude >= point1.getZ()))	{	
 			double distance            = Math.sqrt(Math.pow(point2.getX() - point1.getX(), 2) + Math.pow(point2.getY() - point1.getY(), 2));
@@ -51,28 +79,5 @@ public class Point {
 		System.out.println(value2[0] + ", " + value2[1] + ", " + value2[2]);
 	}
 
-	public double getX() {
-		return x;
-	}
-
-	public void setX(double x) {
-		this.x = x;
-	}
-
-	public double getY() {
-		return y;
-	}
-
-	public void setY(double y) {
-		this.y = y;
-	}
-
-	public double getZ() {
-		return z;
-	}
-
-	public void setZ(double z) {
-		this.z = z;
-	}
 
 }

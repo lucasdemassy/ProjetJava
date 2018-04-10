@@ -20,20 +20,11 @@ public class PointAleatoire extends Point{
 				grille.add(new PointAleatoire(i,j,altitude));
 			}
 		}
-		
-		/*
-		
-		double pointsColonne = nb_points / longueur;	//Nombre de points par unité de longueur
-		double pointsLigne   = nb_points / largeur;		//Nombre de points par unité de largeur
-		double pointsSurface = nb_points /(pointsColonne * pointsLigne);		//Nombre de points par unité de surface
-		double pasColonne    = 1 / pointsColonne;
-		double pasLigne      = ;
-		*/
 		return grille;
 	}
 	
 	public static void main(String[] args) {
-		List<Point> MNT1 = MNTAleatoire(20,30,1,0,100);
+		List<Point> MNT1 = MNTAleatoire(10,200,1,0,100);
 		for(int i=0; i<MNT1.size(); i++)	{
 			System.out.println(MNT1.get(i).getX() + ", " + MNT1.get(i).getY() + ", " + MNT1.get(i).getZ());
 		}
