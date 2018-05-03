@@ -6,6 +6,7 @@ import java.util.List;
 public abstract class MNT {
 	private List<Point> points;
 	private List<Courbe> courbes;
+	private List<Point> bord;
 	
 	public MNT(List<Point> points)	{
 		this.setPoints(points);
@@ -26,6 +27,14 @@ public abstract class MNT {
 
 	public void setCourbes(List<Courbe> courbes) {
 		this.courbes = courbes;
+	}
+	
+	public List<Point> getBord() {
+		return bord;
+	}
+
+	public void setBord(List<Point> bord) {
+		this.bord = bord;
 	}
 	
 	public List<Point> pointAltitude(double altitude)	{
@@ -110,5 +119,7 @@ public abstract class MNT {
 		List<Point> exemple2 = MNT1.pointAltitude(7);
 		System.out.println(exemple2);
 	}
+
+	
 
 }
