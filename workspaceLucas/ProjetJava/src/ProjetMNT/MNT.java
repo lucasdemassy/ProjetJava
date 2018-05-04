@@ -3,7 +3,7 @@ import ProjetMNT.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class MNT {
+public class MNT {
 	private List<Point> points;
 	private List<Courbe> courbes;
 	private List<Point> bord;
@@ -48,8 +48,8 @@ public abstract class MNT {
 			List<Integer> liste_index = new ArrayList<Integer>();
 			Point point_actuel = this.points.get(i);
 			//Agrandissement du buffer jusqu'à rencontrer 8 points (cercle, sphère, ou carré ?)
-			while(liste_buffer.size()<1)	{	//////////////////////////A ajuster pour avoir des points intermédiaires en diagonale !!!!!!!!!!!!!
-				rayon += 0.5;	//Agrandissement du buffer  //////////////////////////A ajuster en fonction de la distance entre les points du MNT
+			while(liste_buffer.size()<4)	{	//////////////////////////A ajuster pour avoir des points intermédiaires en diagonale !!!!!!!!!!!!!
+				rayon += 1;	//Agrandissement du buffer  //////////////////////////A ajuster en fonction de la distance entre les points du MNT
 				for(int j=0; j<this.points.size(); j++)	{
 					if(j != i)	{	//On ne veut pas rajouter point_actuel à la liste
 						//Debug
@@ -79,6 +79,7 @@ public abstract class MNT {
 				//Mettre les points créés dans la List return
 				if(variable_tampon.getZ() != 9999)	{
 					liste_return.add(variable_tampon);
+					System.out.println("Ajout final du point de coordonnées: " + variable_tampon.getX() + ", " + variable_tampon.getY() +" à partir des points: " + point_actuel.getX() + ", " + point_actuel.getY() + " et " + liste_buffer.get(l).getX() + ", " + liste_buffer.get(l).getY());
 				}
 			}
 		}

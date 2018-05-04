@@ -10,12 +10,12 @@ public class PointAleatoire extends Point{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static List<Point> MNTAleatoire(double longueur, double largeur, double precision, double altitudeMin, double altitudeMax)	{
+	public static List<Point> MNTAleatoire(double longueur, double largeur, double pas, double altitudeMin, double altitudeMax)	{
 		// Faire gaffe aux points entiers (éviter les points décimaux)
 		List<Point> grille = new ArrayList<Point>();
 		double altitude;
-		for (double i = 0; i <= largeur; i+=precision)	{
-			for (double j = 0; j <= longueur; j+=precision)	{
+		for (double i = 0; i <= largeur; i+=pas)	{
+			for (double j = 0; j <= longueur; j+=pas)	{
 				altitude = altitudeMin + Math.random()*(altitudeMax - altitudeMin);
 				grille.add(new PointAleatoire(i,j,altitude));
 			}

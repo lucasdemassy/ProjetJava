@@ -15,16 +15,17 @@ public class Affichage2D extends JFrame {
    // Define constants
    public static final int CANVAS_WIDTH  = 640;
    public static final int CANVAS_HEIGHT = 480;
+   MNT MNT1;
+  
    
-   List<Point> MNT1 = ProjetMNT.PointAleatoire.MNTAleatoire(300,400,5,0,100);
    
- 
    // Declare an instance of the drawing canvas,
    // which is an inner class called Dessin2D extending javax.swing.JPanel.
    private Dessin2D canvas;
  
    // Constructor to set up the GUI components and event handlers
-   public Affichage2D() {
+   public Affichage2D(MNT MNT1) {
+	   this.MNT1 = MNT1;
       canvas = new Dessin2D();    // Construct the drawing canvas
       canvas.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
  
@@ -57,7 +58,7 @@ public class Affichage2D extends JFrame {
          g.drawOval(150, 180, 10, 10);
          g.drawRect(200, 210, 20, 30);
          g.setColor(Color.RED);       // change the drawing color
-         g.fillOval(300, 310, 30, 50);
+         g.fillOval(300, 310, 60, 60);
          g.fillRect(400, 350, 60, 50);
          // Printing texts
          g.setColor(Color.WHITE);
@@ -66,17 +67,33 @@ public class Affichage2D extends JFrame {
          
          
          
-         for(int i=0; i<MNT1.size(); i++)	{
-        	 if (MNT1.get(i).getZ() < 50)	{
+         for(int i=0; i<MNT1.getPoints().size(); i++)	{
+        	 if (MNT1.getPoints().get(i).getZ() < 50)	{
         		 g.setColor(Color.GREEN);
         	 }
         	 else	{
         		 g.setColor(Color.RED);
         	 }
-        	 g.drawLine((int)MNT1.get(i).getX(), (int)MNT1.get(i).getY(), (int)MNT1.get(i).getX()+1, (int)MNT1.get(i).getY()+1);
+        	 g.fillOval((int)MNT1.getPoints().get(i).getX(), (int)MNT1.getPoints().get(i).getY(), 10, 10);
+        	 //g.drawLine((int)MNT1.getPoints().get(i).getX(), (int)MNT1.getPoints().get(i).getY(), (int)MNT1.getPoints().get(i).getX()+1, (int)MNT1.getPoints().get(i).getY()+1);
         	 System.out.println("Done");
         	 }
-         g.drawLine(80, 20, 50, 250);
+         g.setColor(Color.BLUE);
+         for(int i=0; i<MNT1.getCourbes().size(); i++)	{
+        	 Courbe niveau = MNT1.getCourbes().get(i);
+        	 for(int j=0; j<niveau.getPoints().size() - 1; j++)	{
+        		 Graphics2D g2d = (Graphics2D) g;
+        		 BasicStroke bs1 = new BasicStroke(5); // pinceau du contour : taille 5
+         		 g2d.setStroke(bs1);
+        		 g.drawLine((int)niveau.getPoints().get(j).getX(), (int)niveau.getPoints().get(j).getY(), (int)niveau.getPoints().get(j+1).getX(), (int)niveau.getPoints().get(j+1).getY());
+        		 System.out.println("Point1: " + (int)niveau.getPoints().get(j).getX() +", "+ (int)niveau.getPoints().get(j).getY() +" Point2: " + (int)niveau.getPoints().get(j+1).getX() + ", "+ (int)niveau.getPoints().get(j+1).getY());
+        	 }
+        	 
+        	 
+         }
+         
+
+         
          
          Graphics2D g2d = (Graphics2D) g;
          int w = this.getWidth();	//Je soupçonne que ça prend la largeur de la fenêtre 
@@ -103,23 +120,24 @@ public class Affichage2D extends JFrame {
  
    // The entry main method
    public static void main(String[] args) {
-      // Run the GUI codes on the Event-Dispatching thread for thread safety
-      SwingUtilities.invokeLater(new Runnable() {
-         @Override
-         public void run() {
-            new Affichage2D(); // Let the constructor do the job
-         }
-      });
+	   /*
+	   List<Point> points = ProjetMNT.PointAleatoire.MNTAleatoire(300,400,10,0,100);
+	   MNT MNT1 = new ProjetMNT.MNT(points);
+	   List<Point> point30 = MNT1.pointAltitude(30);
+	   Courbe courbe = new Courbe(point30, MNT1);
+	   MNT1.getCourbes().add(courbe);
+	   */
+      
       
       	Point point1 = new Point(0, 0, 0);
-      	Point point2 = new Point(0, 1, 5);
-		Point point3 = new Point(0, 2, 10);
-		Point point4 = new Point(1, 0, 2);
-		Point point5 = new Point(1, 1, 4);
-		Point point6 = new Point(1, 2, 8);
-		Point point7 = new Point(2, 0, 1);
-		Point point8 = new Point(2, 1, 3);
-		Point point9 = new Point(2, 2, 6);
+      	Point point2 = new Point(0, 100, 5);
+		Point point3 = new Point(0, 200, 10);
+		Point point4 = new Point(100, 0, 2);
+		Point point5 = new Point(100, 100, 4);
+		Point point6 = new Point(100, 200, 8);
+		Point point7 = new Point(200, 0, 1);
+		Point point8 = new Point(200, 100, 3);
+		Point point9 = new Point(200, 200, 6);
 		List<Point> grille = new ArrayList<Point>();
 		grille.add(point1);
 		grille.add(point2);
@@ -130,6 +148,23 @@ public class Affichage2D extends JFrame {
 		grille.add(point7);
 		grille.add(point8);
 		grille.add(point9);
+		MNT MNT2 = new MNT(grille);
+		List<Point> points4 = MNT2.pointAltitude(4);
+		System.out.println("Taille: " + points4.size());
+		
+		
+		Courbe courbe4 = new Courbe(points4, MNT2);
+		MNT2.getCourbes().add(courbe4);
+		
+		
+		
+		// Run the GUI codes on the Event-Dispatching thread for thread safety
+	      SwingUtilities.invokeLater(new Runnable() {
+	         @Override
+	         public void run() {
+	            new Affichage2D(MNT2); // Let the constructor do the job
+	         }
+	      });
    }
 
 

@@ -43,6 +43,7 @@ public class Point {
 			this.setX(0);
 			this.setY(0);
 			this.setZ(9999);	//Cette altitude signifie que ce point créé est une erreur
+			
 		}
 	}
 	
@@ -88,14 +89,14 @@ public class Point {
 			double difference_altitude = Math.abs(point2.getZ() - point1.getZ());
 			double X                   = 0;
 			double Y                   = 0;
-				if (point1.getZ() < point2.getZ())	{
+				if (point1.getZ() < point2.getZ())	{	///////////////Erreur ici, sûrement au niveau de l'angle alors que dans l'autre condition ça marche
 					double difference_petite = altitude - point1.getZ();
 					double distance_petite   = difference_petite * distance / difference_altitude;
 					double angle             = Math.atan((point2.getY() - point1.getY()) / (point2.getX() - point1.getX()));
 					X                        = point1.getX() + (Math.cos(angle)*distance_petite); 
 					Y                        = point1.getY() + (Math.sin(angle)*distance_petite);
 				}
-				else	{
+				else	{	
 					double difference_petite = altitude - point2.getZ();
 					double distance_petite   = difference_petite * distance / difference_altitude;
 					double angle             = Math.atan((point1.getY() - point2.getY()) / (point1.getX() - point2.getX()));

@@ -20,6 +20,7 @@ public class Courbe {
 		int taille_liste = points.size();
 		List<Point> liste_triee = new ArrayList<Point>();	//Liste finale triée
 		int i = 0;	//Initialisation d'un compteur pour la boucle suivante
+		/*
 		while(liste_triee.size() == 0 || i <= points.size())	{	//On ne veut pas que la condition 
 																	//qu'un point soit en limite de MNT soit réalisée deux fois
 			if(modele.getBord().contains(points.get(i)))	{	//Si un point est en limite de MNT
@@ -30,13 +31,16 @@ public class Courbe {
 			}
 			i++;
 		}
+		*/
+		liste_triee.add(points.get(0));
+		points.remove(0);
 		while(liste_triee.size() < taille_liste)	{
 			double minimum = (double) Integer.MAX_VALUE;	//Initialisation de la distance minimale
 			int index      = 0;	//Variable qui garde en mémoire l'emplacement dans la liste
 								//du point le plus proche du dernier point de la liste triée
 			for(int j=0; j<points.size(); j++)	{	//Parcours de la liste à triée
-				double distance = Math.sqrt(Math.pow(liste_triee.get(liste_triee.size()).getX() - points.get(j).getX(), 2) 
-						+ Math.pow(liste_triee.get(liste_triee.size()).getY() - points.get(j).getY(), 2));
+				double distance = Math.sqrt(Math.pow(liste_triee.get(liste_triee.size() - 1).getX() - points.get(j).getX(), 2) 
+						+ Math.pow(liste_triee.get(liste_triee.size() - 1).getY() - points.get(j).getY(), 2));
 				if( distance < minimum)	{ //Distance euclidienne
 					minimum = distance;
 					index = j;
@@ -56,7 +60,9 @@ public class Courbe {
 		this.points = liste_triee;
 	}
 	
-	
+	public List<Point> getPoints() {
+		return points;
+	}
 
 	public static void main(String[] args) {	//Debug
 		List<Integer> liste = new ArrayList<Integer>();
@@ -76,6 +82,12 @@ public class Courbe {
 		}
 		System.out.println("Fini1");
 		System.out.println(liste.get(liste.size()-1));
+		
+		List<Integer> liste2 = new ArrayList<Integer>();
+		liste2.add(50);
+		liste2.add(60);
+		liste2.add(70);
+		liste2.add(80);
 		
 	}
 
