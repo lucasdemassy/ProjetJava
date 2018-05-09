@@ -39,8 +39,7 @@ public class Courbe {
 			int index      = 0;	//Variable qui garde en mémoire l'emplacement dans la liste
 								//du point le plus proche du dernier point de la liste triée
 			for(int j=0; j<points.size(); j++)	{	//Parcours de la liste à triée
-				double distance = Math.sqrt(Math.pow(liste_triee.get(liste_triee.size() - 1).getX() - points.get(j).getX(), 2) 
-						+ Math.pow(liste_triee.get(liste_triee.size() - 1).getY() - points.get(j).getY(), 2));
+				double distance = Point.distance(liste_triee.get(liste_triee.size() - 1), points.get(j));
 				if( distance < minimum)	{ //Distance euclidienne
 					minimum = distance;
 					index = j;

@@ -38,37 +38,25 @@ public class MNT {
 	}
 	
 	public List<Point> pointAltitude(double altitude)	{
-		System.out.println("Début");	//Debug
+		System.out.println("D�but");	//Debug
+		System.out.println("Taille initiale: " + this.points.size());
 		List<Point> liste_return = new ArrayList<Point>();
+		
 		//parcours de la liste de points du MNT
-		for(int i=0; i<this.points.size(); i++)	{
+		for(int i=0; i<this.points.size(); i++)	{	//On parcours l'ensemble des points du MNT
 			//création buffer
-			double rayon              = 0;
+			List<Point> liste_copie   = new ArrayList<Point>();
+			for(int j=0; j<this.points.size(); j++)	{	//On cr�e une copie de l'ensemble des points du MNT, pour pouvoir effectuer des suppressions dessus sans modifier le MNT
+				liste_copie.add(this.points.get(j));
+			}
 			List<Point> liste_buffer  = new ArrayList<Point>();
-			List<Integer> liste_index = new ArrayList<Integer>();
 			Point point_actuel = this.points.get(i);
-			//Agrandissement du buffer jusqu'à rencontrer 8 points (cercle, sphère, ou carré ?)
+			liste_copie.remove(point_actuel);	//On ne veut pas rajouter point_actuel à la liste
 			while(liste_buffer.size()<4)	{	//////////////////////////A ajuster pour avoir des points intermédiaires en diagonale !!!!!!!!!!!!!
-				rayon += 1;	//Agrandissement du buffer  //////////////////////////A ajuster en fonction de la distance entre les points du MNT
-				for(int j=0; j<this.points.size(); j++)	{
-					if(j != i)	{	//On ne veut pas rajouter point_actuel à la liste
-						//Debug
-						System.out.println("Point centre: " + point_actuel.getX() + ", " + point_actuel.getY() + " Point variable: " + this.points.get(j).getX() + ", " + this.points.get(j).getY() + " Rayon: " + rayon);
-						if(Math.pow(this.points.get(j).getX() - point_actuel.getX(), 2) + Math.pow(this.points.get(j).getY() - point_actuel.getY(), 2) == Math.pow(rayon,  2))	{		//Buffer en forme de cercle
-							boolean test_redondance = true;
-							for(int k=0; k<liste_index.size(); k++)	{
-								if(liste_index.get(k) == j)	{	//On vérifie que le point que l'on compte ajouter à liste_buffer n'y est pas déjà 
-									test_redondance = false;
-								}
-							}
-							if(test_redondance)	{	//Si ce n'est pas un point que l'on a déjà ajouter à liste_buffer
-								liste_buffer.add(this.points.get(j));
-								liste_index.add(j);
-								System.out.println("Ajout du point " + j);  //Debug
-							}
-						}
-					}
-				}
+				System.out.println(liste_copie.size());
+				Point voisin = Point.plusProche(point_actuel, liste_copie);
+				liste_copie.remove(voisin);
+				liste_buffer.add(voisin);
 			}
 			for(int l=0; l<liste_buffer.size(); l++)	{
 				//point intermediaire avec les 8 points et le Point centre du buffer
@@ -76,10 +64,10 @@ public class MNT {
 				//
 				//Je n'ai pas réussi à utiliser la fonction pointIntermediaire, j'ai dû créer un constructeur qui fait pareil que la fonction pointIntermediaire
 				//
-				//Mettre les points créés dans la List return
-				if(variable_tampon.getZ() != 9999)	{
+				//Mettre les points cr��s dans la List return
+				if(variable_tampon.getZ() != 9999)	{	//Sinon, �a veut dire que le point est une erreur
 					liste_return.add(variable_tampon);
-					System.out.println("Ajout final du point de coordonnées: " + variable_tampon.getX() + ", " + variable_tampon.getY() +" à partir des points: " + point_actuel.getX() + ", " + point_actuel.getY() + " et " + liste_buffer.get(l).getX() + ", " + liste_buffer.get(l).getY());
+					System.out.println("Ajout final du point de coordonn�es: " + variable_tampon.getX() + ", " + variable_tampon.getY() +" à partir des points: " + point_actuel.getX() + ", " + point_actuel.getY() + " et " + liste_buffer.get(l).getX() + ", " + liste_buffer.get(l).getY());
 				}
 			}
 		}
@@ -114,7 +102,7 @@ public class MNT {
 		grille.add(point7);
 		grille.add(point8);
 		grille.add(point9);
-		MNT2D MNT1 = new MNT2D(grille);
+		MNT MNT1 = new MNT(grille);
 		List<Point> exemple1 = MNT1.pointAltitude(9);
 		System.out.println(exemple1);
 		List<Point> exemple2 = MNT1.pointAltitude(7);

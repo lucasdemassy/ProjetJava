@@ -5,3 +5,6 @@ J'ai créer un constructeur dans la classe Point qui fait la même chose que la fo
 
 MAJ du 03/05/2018:
 Création du constructeur de Courbe, ainsi que de ses attributs.
+
+MAJ du 09/05/2018:
+Correction de la méthode et du constructeur pointIntermediaire() , et Point(point1, point2, altitude)

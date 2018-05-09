@@ -149,7 +149,7 @@ public class Affichage2D extends JFrame {
 		grille.add(point8);
 		grille.add(point9);
 		MNT MNT2 = new MNT(grille);
-		List<Point> points4 = MNT2.pointAltitude(4);
+		List<Point> points4 = MNT2.pointAltitude(7);
 		System.out.println("Taille: " + points4.size());
 		
 		
