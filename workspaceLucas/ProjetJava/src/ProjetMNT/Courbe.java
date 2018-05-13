@@ -20,7 +20,6 @@ public class Courbe {
 		int taille_liste = points.size();
 		List<Point> liste_triee = new ArrayList<Point>();	//Liste finale triée
 		int i = 0;	//Initialisation d'un compteur pour la boucle suivante
-		/*
 		while(liste_triee.size() == 0 || i <= points.size())	{	//On ne veut pas que la condition 
 																	//qu'un point soit en limite de MNT soit réalisée deux fois
 			if(modele.getBord().contains(points.get(i)))	{	//Si un point est en limite de MNT
@@ -31,9 +30,13 @@ public class Courbe {
 			}
 			i++;
 		}
-		*/
-		liste_triee.add(points.get(0));
-		points.remove(0);
+		if(this.ouverte)	{
+			//Do nothing
+		}
+		else	{
+			liste_triee.add(points.get(0));
+			points.remove(0);
+		}
 		while(liste_triee.size() < taille_liste)	{
 			double minimum = (double) Integer.MAX_VALUE;	//Initialisation de la distance minimale
 			int index      = 0;	//Variable qui garde en mémoire l'emplacement dans la liste

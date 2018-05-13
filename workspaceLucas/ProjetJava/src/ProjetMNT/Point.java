@@ -156,10 +156,14 @@ public class Point {
 		int index      = 0;	//Variable qui garde en mémoire l'emplacement dans la liste
 							//du point le plus proche du dernier point de la liste triée
 		for(int i=0; i<liste.size(); i++)	{
-			double distance = distance(point, liste.get(i));
-			if( distance < minimum)	{ //Distance euclidienne
-				minimum = distance;
-				index = i;
+			if(liste.get(i).equals(point))	{
+			}
+			else	{
+				double distance = distance(point, liste.get(i));
+				if( distance < minimum)	{ //Distance euclidienne
+					minimum = distance;
+					index = i;
+				}
 			}
 		}
 		return liste.get(index);
