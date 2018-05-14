@@ -13,34 +13,43 @@ public class MNTDessin {
 	private List<Courbe> courbes;
 	private List<Point> bord;
 	
-	public MNTDessin(MNT modele, double pas)	{
+	public MNTDessin(MNT modele, double facteur)	{
 		double xMin = xMin(modele.getPoints());
 		double yMin = yMin(modele.getPoints());
 		double distanceMin = distanceMin(modele.getPoints());
 		List<Point> listePoints = new ArrayList<Point>();
 		List<Courbe> listeCourbes = new ArrayList<Courbe>();
 		for(int i=0; i<modele.getPoints().size(); i++)	{
-			Point pointDessin = new Point(modele.getPoints().get(i).getX() - xMin - (distanceMin - pas),
-					modele.getPoints().get(i).getY() - yMin - (distanceMin - pas),
+			Point pointDessin = new Point(modele.getPoints().get(i).getX() - xMin - distanceMin,
+					modele.getPoints().get(i).getY() - yMin - distanceMin,
 					modele.getPoints().get(i).getZ());
+			pointDessin.setX(pointDessin.getX() / facteur);
+			pointDessin.setY(pointDessin.getY() / facteur);
 			listePoints.add(pointDessin);
 		}
 		for(int i=0; i<modele.getCourbes().size(); i++)	{
 			Courbe courbe = modele.getCourbes().get(i);
 			List<Point> liste_tampon = new ArrayList<Point>();
 			for(int j=0; j<courbe.getPoints().size(); j++)	{
-				Point point = new Point(courbe.getPoints().get(j).getX() - xMin - (distanceMin - pas),
-						courbe.getPoints().get(j).getY() - yMin - (distanceMin - pas),
+				Point point = new Point(courbe.getPoints().get(j).getX() - xMin - distanceMin,
+						courbe.getPoints().get(j).getY() - yMin - distanceMin,
 						courbe.getPoints().get(j).getZ());
+				point.setX(point.getX() / facteur);
+				point.setY(point.getY() / facteur);
 				liste_tampon.add(point);
 			}
 			listeCourbes.add(new Courbe(liste_tampon, modele));
 		}
-		this.points = listePoints;
+		this.setPoints(listePoints);
 		this.setCourbes(listeCourbes);
 	}
 	
-	public double xMin(List<Point> liste)	{
+	public MNTDessin(MNT modele)	{
+		setPoints(modele.getPoints());
+		setCourbes(modele.getCourbes());
+	}
+	
+	public static double xMin(List<Point> liste)	{
 		double min = Integer.MAX_VALUE;
 		for(int i=0; i<liste.size(); i++)	{
 			if(liste.get(i).getX() < min)	{
@@ -50,7 +59,7 @@ public class MNTDessin {
 		return min;
 	}
 	
-	public double yMin(List<Point> liste)	{
+	public static double yMin(List<Point> liste)	{
 		double min = Integer.MAX_VALUE;
 		for(int i=0; i<liste.size(); i++)	{
 			if(liste.get(i).getY() < min)	{
@@ -58,6 +67,16 @@ public class MNTDessin {
 			}
 		}
 		return min;
+	}
+	
+	public static double zMax(List<Point> liste)	{
+		double max = Integer.MIN_VALUE;
+		for(int i=0; i<liste.size(); i++)	{
+			if(liste.get(i).getZ() > max)	{
+				max = liste.get(i).getZ();
+			}
+		}
+		return max;
 	}
 	
 	public double distanceMin(List<Point> liste)	{

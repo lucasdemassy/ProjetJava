@@ -20,8 +20,8 @@ public class Point {
 		if ((altitude <= point1.getZ() & altitude >= point2.getZ()) | (altitude <= point2.getZ() & altitude >= point1.getZ()))	{	
 			double distance            = distance(point1, point2);
 			double difference_altitude = Math.abs(point2.getZ() - point1.getZ());
-			double X                   = 0;
-			double Y                   = 0;
+			double X                   = -1;
+			double Y                   = -1;
 			Point pointMin             = new Point(X,Y,altitude);
 			Point pointMax             = new Point(X,Y,altitude);
 			if(point1.getZ() < point2.getZ())	{
@@ -33,10 +33,10 @@ public class Point {
 				pointMax = point1;
 			}
 			//System.out.println("pointMin: " + pointMin.toString() + "pointMax: " + pointMax.toString());
-			double difference_petite = altitude - pointMin.getZ();	//Différence d'altitude entre point le plus bas et altitude souhaitée
-			double distance_petite   = difference_petite * distance / difference_altitude;	//Distance entre point le plus bas et le future point à l'altitude souhaitée
+			double difference_petite = altitude - pointMin.getZ();	//Diffï¿½rence d'altitude entre point le plus bas et altitude souhaitï¿½e
+			double distance_petite   = difference_petite * distance / difference_altitude;	//Distance entre point le plus bas et le future point ï¿½ l'altitude souhaitï¿½e
 			if(pointMin.getX() == pointMax.getX()) {
-				//System.out.println("X égaux");
+				//System.out.println("X ï¿½gaux");
 				double angle = (Math.abs(pointMax.getY() - pointMin.getY()) / (pointMax.getY() - pointMin.getY())) * Math.PI/2;
 				X                        = pointMin.getX() + (Math.cos(angle)*distance_petite); 
 				Y                        = pointMin.getY() + (Math.sin(angle)*distance_petite);
@@ -116,18 +116,18 @@ public class Point {
 				pointMax = point1;
 			}
 			//System.out.println("pointMin: " + pointMin.toString() + "pointMax: " + pointMax.toString());
-			double difference_petite = altitude - pointMin.getZ();	//Différence d'altitude entre point le plus bas et altitude souhaitée
-			double distance_petite   = difference_petite * distance / difference_altitude;	//Distance entre point le plus bas et le future point à l'altitude souhaitée
+			double difference_petite = altitude - pointMin.getZ();	//Diffï¿½rence d'altitude entre point le plus bas et altitude souhaitï¿½e
+			double distance_petite   = difference_petite * distance / difference_altitude;	//Distance entre point le plus bas et le future point ï¿½ l'altitude souhaitï¿½e
 			if(pointMin.getX() == pointMax.getX()) {
-				//System.out.println("X égaux");
+				//System.out.println("X ï¿½gaux");
 				double angle = (Math.abs(pointMax.getY() - pointMin.getY()) / (pointMax.getY() - pointMin.getY())) * Math.PI/2;
 				X                        = pointMin.getX() + (Math.cos(angle)*distance_petite); 
 				Y                        = pointMin.getY() + (Math.sin(angle)*distance_petite);
 				//System.out.println("Ajout: " + Math.sin(angle)*distance_petite + ", Angle: " + angle);
 			}
-			else	{	//Soucis, on fait toujours cette condition
+			else	{	
 				//System.out.println("PAS COOL");
-				if ((pointMin.getX() - pointMax.getX())/distance >= 0)	{	///////////////Erreur ici, sÃ»rement au niveau de l'angle alors que dans l'autre condition Ã§a marche
+				if ((pointMin.getX() - pointMax.getX())/distance >= 0)	{	
 					double angle             = Math.atan((pointMax.getY() - pointMin.getY()) / (pointMax.getX() - pointMin.getX()));
 					X                        = pointMin.getX() - (Math.cos(angle)*distance_petite); 
 					Y                        = pointMin.getY() - (Math.sin(angle)*distance_petite);
@@ -153,8 +153,8 @@ public class Point {
 	
 	public static Point plusProche(Point point, List<Point> liste)	{
 		double minimum = (double) Integer.MAX_VALUE;	//Initialisation de la distance minimale
-		int index      = 0;	//Variable qui garde en mémoire l'emplacement dans la liste
-							//du point le plus proche du dernier point de la liste triée
+		int index      = 0;	//Variable qui garde en mï¿½moire l'emplacement dans la liste
+							//du point le plus proche du dernier point de la liste triï¿½e
 		for(int i=0; i<liste.size(); i++)	{
 			if(liste.get(i).equals(point))	{
 			}
@@ -182,28 +182,28 @@ public class Point {
 		Point point10  = new Point(0,2,0);
 		double[] value = pointIntermediaire(point1, point2, 2);			
 		System.out.println(value[0] + ", " + value[1] + ", " + value[2]);
-		System.out.println("Résultat attendu: 0.8, 0.8");
+		System.out.println("Rï¿½sultat attendu: 0.8, 0.8");
 		double[] value2 = pointIntermediaire(point1, point3, 2);		
 		System.out.println(value2[0] + ", " + value2[1] + ", " + value2[2]);
-		System.out.println("Résultat attendu: 1.2, 1.2");
+		System.out.println("Rï¿½sultat attendu: 1.2, 1.2");
 		double[] value3 = pointIntermediaire(point1, point4, 2);
 		System.out.println(value3[0] + ", " + value3[1] + ", " + value3[2]);
-		System.out.println("Résultat attendu: 1.2, 0.8");
+		System.out.println("Rï¿½sultat attendu: 1.2, 0.8");
 		double[] value4 = pointIntermediaire(point1, point5, 2);	
 		System.out.println(value4[0] + ", " + value4[1] + ", " + value4[2]);
-		System.out.println("Résultat attendu: 0.8, 1.2");
+		System.out.println("Rï¿½sultat attendu: 0.8, 1.2");
 		double[] value5 = pointIntermediaire(point6, point7, 2);		
 		System.out.println(value5[0] + ", " + value5[1] + ", " + value5[2]);
-		System.out.println("Résultat attendu: 0.2, 0.2");
+		System.out.println("Rï¿½sultat attendu: 0.2, 0.2");
 		double[] value6 = pointIntermediaire(point6, point8, 2);		
 		System.out.println(value6[0] + ", " + value6[1] + ", " + value6[2]);
-		System.out.println("Résultat attendu: 1.8, 1.8");
+		System.out.println("Rï¿½sultat attendu: 1.8, 1.8");
 		double[] value7 = pointIntermediaire(point6, point9, 2);		
 		System.out.println(value7[0] + ", " + value7[1] + ", " + value7[2]);
-		System.out.println("Résultat attendu: 1.8, 0.2");
+		System.out.println("Rï¿½sultat attendu: 1.8, 0.2");
 		double[] value8 = pointIntermediaire(point6, point10, 2);
 		System.out.println(value8[0] + ", " + value8[1] + ", " + value8[2]);
-		System.out.println("Résultat attendu: 0.2, 1.8");
+		System.out.println("Rï¿½sultat attendu: 0.2, 1.8");
 		
 		Point point12 = new Point(point1, point2, 2);
 		Point point13 = new Point(point1, point3, 2);
@@ -214,21 +214,21 @@ public class Point {
 		Point point19 = new Point(point6, point9, 2);
 		Point point20 = new Point(point6, point10, 2);
 		System.out.println(point12.toString());
-		System.out.println("Résultat attendu: 0.8, 0.8");
+		System.out.println("Rï¿½sultat attendu: 0.8, 0.8");
 		System.out.println(point13.toString());
-		System.out.println("Résultat attendu: 1.2, 1.2");
+		System.out.println("Rï¿½sultat attendu: 1.2, 1.2");
 		System.out.println(point14.toString());
-		System.out.println("Résultat attendu: 1.2, 0.8");
+		System.out.println("Rï¿½sultat attendu: 1.2, 0.8");
 		System.out.println(point15.toString());
-		System.out.println("Résultat attendu: 0.8, 1.2");
+		System.out.println("Rï¿½sultat attendu: 0.8, 1.2");
 		System.out.println(point17.toString());
-		System.out.println("Résultat attendu: 0.2, 0.2");
+		System.out.println("Rï¿½sultat attendu: 0.2, 0.2");
 		System.out.println(point18.toString());
-		System.out.println("Résultat attendu: 1.8, 1.8");
+		System.out.println("Rï¿½sultat attendu: 1.8, 1.8");
 		System.out.println(point19.toString());
-		System.out.println("Résultat attendu: 1.8, 0.2");
+		System.out.println("Rï¿½sultat attendu: 1.8, 0.2");
 		System.out.println(point20.toString());
-		System.out.println("Résultat attendu: 0.2, 1.8");
+		System.out.println("Rï¿½sultat attendu: 0.2, 1.8");
 		
 		Point point21 = new Point(0,1,10);
 		Point point22 = new Point(1,0,10);
@@ -241,7 +241,8 @@ public class Point {
 		System.out.println(point26.toString());
 		System.out.println(point27.toString());	
 		System.out.println(point28.toString());	
-		System.out.println(point29.toString());	
+		System.out.println(point29.toString());
+		
 	}
 
 

@@ -74,16 +74,27 @@ public class Affichage2D extends JFrame {
          
          g.setColor(Color.YELLOW);
          for(int i=0; i<MNT1.getPoints().size(); i++)	{
-        	 if (MNT1.getPoints().get(i).getZ() < 50)	{
+        	 if (MNT1.getPoints().get(i).getZ() == 0)	{
+        		 g.setColor(Color.BLUE);
+        	 }
+        	 /*
+        	 if (MNT1.getPoints().get(i).getZ() < 50 && MNT1.getPoints().get(i).getZ() > 0)	{
         		 g.setColor(Color.GREEN);
         	 }
-        	 else	{
+        	 if (MNT1.getPoints().get(i).getZ() >= 50 && MNT1.getPoints().get(i).getZ() < 100)	{
+        		 g.setColor(Color.YELLOW);
+        	 }
+        	 if (MNT1.getPoints().get(i).getZ() > 100)	{
         		 g.setColor(Color.RED);
         	 }
-        	 g.fillOval((int)MNT1.getPoints().get(i).getX(), (int)MNT1.getPoints().get(i).getY(), 10, 10);
+        	 */
+        	 else	{
+        		 g.setColor(Color.getHSBColor(0, 0, (float) MNT1.getPoints().get(i).getZ() / (float) MNTDessin.zMax(MNT1.getPoints())));
+        	 }
+        	 g.fillOval((int)MNT1.getPoints().get(i).getX(), (int)MNT1.getPoints().get(i).getY(), 5, 5);
         	 //g.drawLine((int)MNT1.getPoints().get(i).getX(), (int)MNT1.getPoints().get(i).getY(), (int)MNT1.getPoints().get(i).getX()+1, (int)MNT1.getPoints().get(i).getY()+1);
         	 }
-         g.setColor(Color.BLUE);
+         g.setColor(Color.YELLOW);
          for(int i=0; i<MNT1.getCourbes().size(); i++)	{
         	 Courbe niveau = MNT1.getCourbes().get(i);
         	 for(int j=0; j<niveau.getPoints().size() - 1; j++)	{
@@ -91,7 +102,7 @@ public class Affichage2D extends JFrame {
         		 BasicStroke bs1 = new BasicStroke(5); // pinceau du contour : taille 5
          		 g2d.setStroke(bs1);
         		 g.drawLine((int)niveau.getPoints().get(j).getX(), (int)niveau.getPoints().get(j).getY(), (int)niveau.getPoints().get(j+1).getX(), (int)niveau.getPoints().get(j+1).getY());
-        		 System.out.println("Point1: " + (int)niveau.getPoints().get(j).getX() +", "+ (int)niveau.getPoints().get(j).getY() +" Point2: " + (int)niveau.getPoints().get(j+1).getX() + ", "+ (int)niveau.getPoints().get(j+1).getY());
+        		 System.out.println("Point1: " + (int)niveau.getPoints().get(j).getX() +", "+ (int)niveau.getPoints().get(j).getY() +", "+ (int)niveau.getPoints().get(j).getZ() +" Point2: " + (int)niveau.getPoints().get(j+1).getX() + ", "+ (int)niveau.getPoints().get(j+1).getY() + ", "+ (int)niveau.getPoints().get(j+1).getZ());
         	 }
         	 
         	 
@@ -135,14 +146,14 @@ public class Affichage2D extends JFrame {
       
       
       	Point point1 = new Point(0, 0, 0);
-      	Point point2 = new Point(0, 100, 5);
-		Point point3 = new Point(0, 200, 10);
-		Point point4 = new Point(100, 0, 2);
-		Point point5 = new Point(100, 100, 4);
-		Point point6 = new Point(100, 200, 8);
-		Point point7 = new Point(200, 0, 1);
-		Point point8 = new Point(200, 100, 3);
-		Point point9 = new Point(200, 200, 6);
+      	Point point2 = new Point(0, 100, 0);
+		Point point3 = new Point(0, 200, 0);
+		Point point4 = new Point(100, 0, 0);
+		Point point5 = new Point(100, 100, 10);
+		Point point6 = new Point(100, 200, 0);
+		Point point7 = new Point(200, 0, 0);
+		Point point8 = new Point(200, 100, 0);
+		Point point9 = new Point(200, 200, 0);
 		List<Point> grille = new ArrayList<Point>();
 		grille.add(point1);
 		grille.add(point2);
@@ -154,27 +165,75 @@ public class Affichage2D extends JFrame {
 		grille.add(point8);
 		grille.add(point9);
 		MNT MNT2 = new MNT(grille);
-		List<Point> points4 = MNT2.pointAltitude(7);
-		System.out.println("Taille: " + points4.size());
+		List<Point> points9 = MNT2.pointAltitude(9);
+		List<Courbe> courbes9 = ProjetMNT.Courbe.planAltimetrique(points9, MNT2);
+		MNT2.setCourbes(courbes9);
+		MNTDessin MNT2Dessin = new MNTDessin(MNT2);
 		
-		
-		Courbe courbe4 = new Courbe(points4, MNT2);
-		MNT2.getCourbes().add(courbe4);
-		
-		List<Point> liste =PointImport. MNTImport("C:\\Users\\lucas\\Downloads\\Reunion_MNT250_ASC\\DEPT974.asc");
+		/*
+		List<Point> liste =PointImport. MNTImport("/home/prof/Bureau/ProjetJava-master/Reunion_MNT250_ASC/DEPT974.asc");
+		//List<Point> liste =PointImport. MNTImport("C:\\Users\\lucas\\Downloads\\Reunion_MNT250_ASC\\DEPT974.asc");
 		MNT MNT3 = new MNT(liste);
-		MNTDessin MNT3Dessin = new MNTDessin(MNT3, 1);
+		List<Point> points150 = MNT3.pointAltitude(150);
+		List<Courbe> courbes150 = ProjetMNT.Courbe.planAltimetrique(points150, MNT3);
+		MNT3.setCourbes(courbes150);
+		MNTDessin MNT3Dessin = new MNTDessin(MNT3, 90);
+	    System.out.println(MNT3Dessin.getPoints().get(0).toString());
+	    System.out.println(MNT3Dessin.getPoints().get(1).toString());
+	    */
 		
+	    /*
+	    for(int i=0; i<MNT2.getCourbes().get(0).getPoints().size(); i++)	{
+	    	System.out.println(MNT2.getCourbes().get(0).getPoints().get(i));
+	    }
+	    */
+	    
+	   
+	    
+		Point point01 = new Point(0,0,5);
+		Point point02 = new Point(0,100,5);
+		Point point03 = new Point(0,200,10);
+		Point point04 = new Point(100,0,5);
+		Point point05 = new Point(100,100,0);
+		Point point06 = new Point(100,200,5);
+		Point point07 = new Point(200,0,10);
+		Point point08 = new Point(200,100,5);
+		Point point09 = new Point(200,200,10);
+		List<Point> grille0 =  new ArrayList<Point>();
+		grille0.add(point01);
+		grille0.add(point02);
+		grille0.add(point03);
+		grille0.add(point04);
+		grille0.add(point05);
+		grille0.add(point06);
+		grille0.add(point07);
+		grille0.add(point08);
+		grille0.add(point09);
+		MNT MNT01 = new MNT(grille0);
+		List<Point> points = MNT01.pointAltitude(9);
+		System.out.println("Taille points de MNT01: " + points.size());
+		List<Courbe> courbes = ProjetMNT.Courbe.planAltimetrique(points, MNT01);
+		MNT01.setCourbes(courbes);
+		MNTDessin MNT01Dessin = new MNTDessin(MNT01);
+	    System.out.println("Nombre de courbes: " + MNT01Dessin.getCourbes().size());
+	    for(int i=0; i<courbes.size(); i++)	{
+			Courbe courbe_actuelle = courbes.get(i);
+			System.out.println("Courbe numéro " + i);
+			System.out.println("Nombre de points: " + courbe_actuelle.getPoints().size());
+			for(int j=0; j<courbe_actuelle.getPoints().size(); j++)	{
+				System.out.println(courbe_actuelle.getPoints().get(j).toString());
+			}
+		}
 		
 		// Run the GUI codes on the Event-Dispatching thread for thread safety
 	    SwingUtilities.invokeLater(new Runnable() {
 	    	@Override
 	    	public void run() {
-	    		new Affichage2D(MNT3Dessin); // Let the constructor do the job
+	    		new Affichage2D(MNT01Dessin); // Let the constructor do the job
 	        }
 	    });
-	    System.out.println(MNT3Dessin.getPoints().get(0).toString());
-	    System.out.println(MNT3Dessin.getPoints().get(1).toString());
+		
+	    
    }
 
 
