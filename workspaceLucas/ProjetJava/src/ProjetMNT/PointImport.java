@@ -22,7 +22,7 @@ public class PointImport extends Point{
 		double virgule = 1;
 		double presence_virgule = 0;
 		double signe = 1;
-		if((int) caractere[0] == 45)	{	//Si le nombre commence par "-" il est négatif
+		if((int) caractere[0] == 45)	{	//Si le nombre commence par "-" il est nÃ©gatif
 			negatif = true;
 			signe = -1;
 		}
@@ -58,7 +58,7 @@ public class PointImport extends Point{
 			if((int) caractere[i] == 57)	{
 				nombre += Math.pow(10, nombreChiffre - i - 1 + presence_virgule) * 9 * signe / virgule;
 			}
-			if((int) caractere[i] == 46 || (int) caractere[i] == 44) {	//On rajoute la virgule ou le point à la fin
+			if((int) caractere[i] == 46 || (int) caractere[i] == 44) {	//On rajoute la virgule ou le point Ã  la fin
 				virgule = Math.pow(10, nombreChiffre - i);
 				nombre /= Math.pow(10, nombreChiffre - i);
 				presence_virgule = 1;
@@ -69,17 +69,17 @@ public class PointImport extends Point{
 	}
 	
 	public static List<Point> MNTImport(String chemin)	{
-		 // Lecture d’un fichier 
+		 // Lecture d'un fichier 
 		List<Point> liste = new ArrayList<Point>();
 		String filePath = chemin; // chemin absolu vers le fichier
-		Path p = Paths.get(filePath); // creation de l’objet Path
+		Path p = Paths.get(filePath); // creation de l'objet Path
 		double colonne = 0;
 		double ligne =0;
 		double x_origine = 0;
 		double y_origine = 0;
 		double pas = 0;
 		double noData = 0;
-		try (BufferedReader reader = Files.newBufferedReader(p)) { // ouverture d’un buffer en lecture
+		try (BufferedReader reader = Files.newBufferedReader(p)) { // ouverture d'un buffer en lecture
 			String line;
 			for(int j=0; j<6; j++)	{
 				line = reader.readLine();
@@ -119,10 +119,10 @@ public class PointImport extends Point{
 							Point point = new Point(x, y, StringToDouble(substring[i]));
 							liste.add(point);
 						}
-						x += pas;	//Placé ici car même si noData, le pas avance
+						x += pas;	//PlacÃ© ici car mÃªme si noData, le pas avance
 					}
 				}
-				y += pas;	//Placé ici car pas en y après lecture d'une ligne entière
+				y += pas;	//PlacÃ© ici car pas en y aprÃ¨s lecture d'une ligne entiÃ¨re
 			}
 		
 		} catch (IOException e)	{
