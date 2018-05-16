@@ -173,10 +173,11 @@ public class Affichage2D extends JFrame {
 		MNTDessin MNT2Dessin = new MNTDessin(MNT2);
 		
 		
-		List<Point> liste =PointImport. MNTImport("/home/prof/Bureau/ProjetJava-master/Reunion_MNT250_ASC/DEPT974.asc");
-		//List<Point> liste =PointImport. MNTImport("C:\\Users\\lucas\\Downloads\\Reunion_MNT250_ASC\\DEPT974.asc");
+		//List<Point> liste =PointImport. MNTImport("/home/prof/Bureau/ProjetJava-master/Reunion_MNT250_ASC/DEPT974.asc");
+		//List<Point> liste =PointImport. MNTImport("C:\\Users\\lucas\\Downloads\\Guyane_MNT250_ASC\\DEPT973.asc");
+		List<Point> liste =PointImport. MNTImport("C:\\Users\\lucas\\Downloads\\Reunion_MNT250_ASC\\DEPT974.asc");
 		MNT MNT3 = new MNT(liste);
-		List<Point> points150 = MNT3.pointAltitude(150);
+		List<Point> points150 = MNT3.pointAltitude(300);
 		List<Courbe> courbes150 = ProjetMNT.Courbe.planAltimetrique(points150, MNT3);
 		MNT3.setCourbes(courbes150);
 		//MNT3.CourbePas(1500);

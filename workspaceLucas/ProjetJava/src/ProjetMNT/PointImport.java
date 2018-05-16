@@ -11,11 +11,26 @@ import java.util.List;
 public class PointImport extends Point{
 
 	public PointImport(double x, double y, double z) {
+		/**
+		 * Constructeur hérité de la classe Point
+		 * 
+		 * @param x: coordonnée x du point
+		 * @param y: coordonnée y du point
+		 * @param z: coordonnée z du point
+		 * 
+		 * @see ProjetMNT.Point.Point
+		 */
 		super(x, y, z);
 		// TODO Auto-generated constructor stub
 	}
 	
 	public static double StringToDouble(String texte) {
+		/**
+		 * Méthode de classe convertissant un nombre au format String en un nombre au format double
+		 * 
+		 * @param texte: Le format du texte ne contient uniquement que les signes "-" "." "," 
+		 * @return nombre de type double
+		 */
 		char[] caractere = texte.toCharArray();
 		double nombre = 0;	//Initialisation
 		boolean negatif = false;
@@ -69,7 +84,15 @@ public class PointImport extends Point{
 	}
 	
 	public static List<Point> MNTImport(String chemin)	{
-		 // Lecture d'un fichier 
+		/**
+		 * Méthode de classe permettant l'import d'un MNT à partir d'un fichier au format GRID ASCII
+		 * 
+		 * @param chemin: chemin absolu du fichier asc
+		 * @return liste de point correspondant aux données du fichier. Cette liste servira à la création d'un futur MNT
+		 * 
+		 * @see ProjetMNT.PointImport.StringToDouble
+		 */
+		// Lecture d'un fichier 
 		List<Point> liste = new ArrayList<Point>();
 		String filePath = chemin; // chemin absolu vers le fichier
 		Path p = Paths.get(filePath); // creation de l'objet Path

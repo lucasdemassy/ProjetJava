@@ -10,6 +10,12 @@ public class Courbe {
 	private MNT modele;
 	
 	public Courbe(List<Point> points, MNT modele)	{
+		/**
+		 * Constructeur classique de la classe Courbe
+		 * 
+		 * @param points: liste de points de même altitude
+		 * @param modele: MNT dont appartient la courbe de niveau
+		 */
 		this.modele = modele;
 		this.points = points;
 	}
@@ -20,13 +26,20 @@ public class Courbe {
 		 * de sorte que l'ordre de la liste corresponde Ã  l'ordre de dessin 
 		 * (c'est Ã  dire dessiner la courbe sans lever le crayon).
 		 * Puis on parcourt cette liste triÃ©e, et plus particuliÃ¨rement les distances entre chaque points juxtaposÃ©s dans la liste,
-		 * Si un
+		 * Si une distance est trop grande (selon un critère arbitraire),
+		 * On sépare la liste triée en deux. La première partie de la liste de point est convertie en Courbe
+		 * tandis que l'on applique à la seconde partie la méthode planAltimétrique (c'est donc une méthode récursive)
 		 * 
+		 * @param points: nuage de point de même altitude
+		 * @return liste de courbes distinctes de même altitude 
 		 * 
+		 * @see ProjetMNT.Point.plusProche
+		 * @see ProjetMNT.Point.egal
+		 * @see ProjetMNT.Point.distance
 		 */
 		int taille_liste = points.size();
 		if(taille_liste == 0)	{
-			System.out.println("Taille nulle de la liste de point en entrÃ©e");
+			System.out.println("Taille nulle de la liste de point en entrée");
 			return null;
 		}
 		List<Point> liste_triee = new ArrayList<Point>();
@@ -67,7 +80,6 @@ public class Courbe {
 		continuer = true;
 		for(int k=0; k<liste_distance.size(); k++)	{
 			if(continuer)	{	//Tant qu'on a pas rencontrÃ© une distance n'Ã©tant pas d'ans l'intervalle de confiance Ã  95%
-				
 				if(liste_distance.get(k) >= 1.5*(liste_distance.get(0) + liste_distance.get(liste_distance.size() - 1)))	{
 					continuer = false;
 					partie1.add(liste_triee.get(k));
