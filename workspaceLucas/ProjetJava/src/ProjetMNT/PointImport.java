@@ -12,11 +12,11 @@ public class PointImport extends Point{
 
 	public PointImport(double x, double y, double z) {
 		/**
-		 * Constructeur hÈritÈ de la classe Point
+		 * Constructeur h√©rit√© de la classe Point
 		 * 
-		 * @param x: coordonnÈe x du point
-		 * @param y: coordonnÈe y du point
-		 * @param z: coordonnÈe z du point
+		 * @param x: coordonn√©e x du point
+		 * @param y: coordonn√©e y du point
+		 * @param z: coordonn√©e z du point
 		 * 
 		 * @see ProjetMNT.Point.Point
 		 */
@@ -26,19 +26,17 @@ public class PointImport extends Point{
 	
 	public static double StringToDouble(String texte) {
 		/**
-		 * MÈthode de classe convertissant un nombre au format String en un nombre au format double
+		 * M√©thode de classe convertissant un nombre au format String en un nombre au format double
 		 * 
 		 * @param texte: Le format du texte ne contient uniquement que les signes "-" "." "," 
 		 * @return nombre de type double
 		 */
 		char[] caractere = texte.toCharArray();
 		double nombre = 0;	//Initialisation
-		boolean negatif = false;
 		double virgule = 1;
 		double presence_virgule = 0;
 		double signe = 1;
 		if((int) caractere[0] == 45)	{	//Si le nombre commence par "-" il est n√©gatif
-			negatif = true;
 			signe = -1;
 		}
 		int nombreChiffre = texte.length();
@@ -85,10 +83,10 @@ public class PointImport extends Point{
 	
 	public static List<Point> MNTImport(String chemin)	{
 		/**
-		 * MÈthode de classe permettant l'import d'un MNT ‡ partir d'un fichier au format GRID ASCII
+		 * M√©thode de classe permettant l'import d'un MNT √† partir d'un fichier au format GRID ASCII
 		 * 
 		 * @param chemin: chemin absolu du fichier asc
-		 * @return liste de point correspondant aux donnÈes du fichier. Cette liste servira ‡ la crÈation d'un futur MNT
+		 * @return liste de point correspondant aux donn√©es du fichier. Cette liste servira √† la cr√©ation d'un futur MNT
 		 * 
 		 * @see ProjetMNT.PointImport.StringToDouble
 		 */

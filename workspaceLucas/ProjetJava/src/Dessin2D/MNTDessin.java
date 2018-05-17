@@ -1,6 +1,5 @@
 package Dessin2D;
 
-import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +15,11 @@ public class MNTDessin {
 	public MNTDessin(MNT modele, double facteur)	{
 		double xMin = xMin(modele.getPoints());
 		double yMin = yMin(modele.getPoints());
-		double distanceMin = distanceMin(modele.getPoints());
 		List<Point> listePoints = new ArrayList<Point>();
 		List<Courbe> listeCourbes = new ArrayList<Courbe>();
 		for(int i=0; i<modele.getPoints().size(); i++)	{
-			Point pointDessin = new Point(modele.getPoints().get(i).getX() - xMin - distanceMin,
-					modele.getPoints().get(i).getY() - yMin - distanceMin,
+			Point pointDessin = new Point(modele.getPoints().get(i).getX() - xMin,
+					modele.getPoints().get(i).getY() - yMin,
 					modele.getPoints().get(i).getZ());
 			pointDessin.setX(pointDessin.getX() / facteur);
 			pointDessin.setY(pointDessin.getY() / facteur);
@@ -31,8 +29,8 @@ public class MNTDessin {
 			Courbe courbe = modele.getCourbes().get(i);
 			List<Point> liste_tampon = new ArrayList<Point>();
 			for(int j=0; j<courbe.getPoints().size(); j++)	{
-				Point point = new Point(courbe.getPoints().get(j).getX() - xMin - distanceMin,
-						courbe.getPoints().get(j).getY() - yMin - distanceMin,
+				Point point = new Point(courbe.getPoints().get(j).getX() - xMin,
+						courbe.getPoints().get(j).getY() - yMin,
 						courbe.getPoints().get(j).getZ());
 				point.setX(point.getX() / facteur);
 				point.setY(point.getY() / facteur);

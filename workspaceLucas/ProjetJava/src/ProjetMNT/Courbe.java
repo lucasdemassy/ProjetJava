@@ -1,7 +1,6 @@
 package ProjetMNT;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Courbe {
@@ -13,7 +12,7 @@ public class Courbe {
 		/**
 		 * Constructeur classique de la classe Courbe
 		 * 
-		 * @param points: liste de points de même altitude
+		 * @param points: liste de points de mÃªme altitude
 		 * @param modele: MNT dont appartient la courbe de niveau
 		 */
 		this.modele = modele;
@@ -26,12 +25,12 @@ public class Courbe {
 		 * de sorte que l'ordre de la liste corresponde Ã  l'ordre de dessin 
 		 * (c'est Ã  dire dessiner la courbe sans lever le crayon).
 		 * Puis on parcourt cette liste triÃ©e, et plus particuliÃ¨rement les distances entre chaque points juxtaposÃ©s dans la liste,
-		 * Si une distance est trop grande (selon un critère arbitraire),
-		 * On sépare la liste triée en deux. La première partie de la liste de point est convertie en Courbe
-		 * tandis que l'on applique à la seconde partie la méthode planAltimétrique (c'est donc une méthode récursive)
+		 * Si une distance est trop grande (selon un critÃ¨re arbitraire),
+		 * On sÃ©pare la liste triÃ©e en deux. La premiÃ¨re partie de la liste de point est convertie en Courbe
+		 * tandis que l'on applique Ã  la seconde partie la mÃ©thode planAltimetrique (c'est donc une mÃ©thode rÃ©cursive)
 		 * 
-		 * @param points: nuage de point de même altitude
-		 * @return liste de courbes distinctes de même altitude 
+		 * @param points: nuage de point de mÃªme altitude
+		 * @return liste de courbes distinctes de mÃªme altitude 
 		 * 
 		 * @see ProjetMNT.Point.plusProche
 		 * @see ProjetMNT.Point.egal
@@ -39,7 +38,7 @@ public class Courbe {
 		 */
 		int taille_liste = points.size();
 		if(taille_liste == 0)	{
-			System.out.println("Taille nulle de la liste de point en entrée");
+			System.out.println("Taille nulle de la liste de point en entrÃ©e");
 			return null;
 		}
 		List<Point> liste_triee = new ArrayList<Point>();
@@ -63,20 +62,11 @@ public class Courbe {
 				i --;
 			}
 		}
-		double somme = 0;
 		for(int i=0; i<liste_triee.size() - 1; i++)	{
 			double distance = Point.distance(liste_triee.get(i), liste_triee.get(i+1));
 			liste_distance.add(distance);
-			somme += liste_distance.get(i);
+			
 		}
-		double moyenne = somme/liste_distance.size();
-		System.out.println("Distance moyenne = " + moyenne);
-		double momentCentreOrdre2 = 0;
-		for(int j=0; j<liste_distance.size(); j++)	{
-			momentCentreOrdre2 += Math.pow(liste_distance.get(j) - moyenne, 2);
-		}
-		double variance = momentCentreOrdre2 / liste_distance.size();
-		double ecartType = Math.sqrt(variance);
 		continuer = true;
 		for(int k=0; k<liste_distance.size(); k++)	{
 			if(continuer)	{	//Tant qu'on a pas rencontrÃ© une distance n'Ã©tant pas d'ans l'intervalle de confiance Ã  95%
@@ -121,32 +111,7 @@ public class Courbe {
 	}
 	
 
-	public static void main(String[] args) {	//Debug
-		List<Integer> liste = new ArrayList<Integer>();
-		liste.add(10);
-		liste.add(20);
-		liste.add(30);
-		liste.add(40);
-		Integer nombre = 20;
-		
-		for(int i=0; i<liste.size(); i++)	{
-			if(liste.get(i) == 20)	{
-				liste.remove(i);
-			}
-		}
-		for(int i=0; i<liste.size(); i++)	{
-			System.out.println(liste.get(i));
-		}
-		System.out.println("Fini1");
-		System.out.println(liste.get(liste.size()-1));
-		
-		List<Integer> liste2 = new ArrayList<Integer>();
-		liste2.add(50);
-		liste2.add(60);
-		liste2.add(70);
-		liste2.add(80);
-		
-		
+	public static void main(String[] args) {	//Debug	
 		Point point1 = new Point(0,0,10);
 		Point point2 = new Point(0,1,5);
 		Point point3 = new Point(0,2,10);

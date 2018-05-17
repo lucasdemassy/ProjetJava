@@ -6,7 +6,7 @@ import java.util.List;
 public class MNT {
 	private List<Point> points;
 	private List<Courbe> courbes;
-	private List<Point> bord;
+	
 	
 	public MNT(List<Point> points)	{
 		/**
@@ -15,7 +15,6 @@ public class MNT {
 		 * 
 		 * @param points: liste de point sous forme List<Point>
 		 * 
-		 * @see ProjetMNT.Point
 		 */
 		this.setPoints(points);
 		this.setCourbes(new ArrayList<Courbe>());
@@ -35,14 +34,6 @@ public class MNT {
 
 	public void setCourbes(List<Courbe> courbes) {
 		this.courbes = courbes;
-	}
-	
-	public List<Point> getBord() {
-		return bord;
-	}
-
-	public void setBord(List<Point> bord) {
-		this.bord = bord;
 	}
 	
 	public void CourbePas(double pas)	{
@@ -82,7 +73,7 @@ public class MNT {
 			List<Point> liste_copie  = new ArrayList<Point>();
 			List<Point> liste_buffer = new ArrayList<Point>();
 			Point point_actuel       = this.points.get(i);
-			System.out.println(this.points.get(this.points.size() - 1).getY() - point_actuel.getY());	//Affiche un décompte pour voir l'avancement de la fonction
+			System.out.println(this.points.size() - i);	//Affiche un décompte pour voir l'avancement de la fonction
 			for(int j=0; j<this.points.size(); j++)	{	//On crée une copie des points du MNT,
 														//suceptibles de nous donner un point intermédiaire avec point_actuel,
 														//afin pouvoir effectuer des suppressions dessus sans modifier le MNT
