@@ -8,6 +8,12 @@ public class Courbe {
 								//de sorte que l'on puisse dessiner la courbe en suivant l'ordre de cette liste
 	private MNT modele;
 	
+	
+	public List<Point> getPoints() {
+		return points;
+	}
+	
+	
 	public Courbe(List<Point> points, MNT modele)	{
 		/**
 		 * Constructeur classique de la classe Courbe
@@ -41,14 +47,14 @@ public class Courbe {
 			System.out.println("Taille nulle de la liste de point en entrée");
 			return null;
 		}
-		List<Point> liste_triee = new ArrayList<Point>();
-		List<Courbe> liste_return = new ArrayList<Courbe>();
-		List<Point> partie1 = new ArrayList<Point>();
-		List<Point> partie2 = new ArrayList<Point>();
-		boolean continuer = true;
+		List<Point> liste_triee     = new ArrayList<Point>();
+		List<Courbe> liste_return   = new ArrayList<Courbe>();
+		List<Point> partie1         = new ArrayList<Point>();
+		List<Point> partie2         = new ArrayList<Point>();
+		List<Double> liste_distance = new ArrayList<Double>();
+		boolean continuer           = true;
 		liste_triee.add(points.get(0));
 		points.remove(0);
-		List<Double> liste_distance = new ArrayList<Double>();
 		while(liste_triee.size() < taille_liste)	{
 			Point pointPlusProche = Point.plusProche(liste_triee.get(liste_triee.size() - 1), points);
 			liste_triee.add(pointPlusProche);	//On choisit ce point 
@@ -103,14 +109,10 @@ public class Courbe {
 			}
 		}
 		return liste_return;
-		
 	}
 	
-	public List<Point> getPoints() {
-		return points;
-	}
 	
-
+	
 	public static void main(String[] args) {	//Debug	
 		Point point1 = new Point(0,0,10);
 		Point point2 = new Point(0,1,5);

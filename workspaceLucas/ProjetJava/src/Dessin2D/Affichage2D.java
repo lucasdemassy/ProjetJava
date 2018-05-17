@@ -17,9 +17,10 @@ import javax.swing.*;    // Using Swing's components and containers
 @SuppressWarnings("serial")
 public class Affichage2D extends JFrame {
    // Define constants
-   public static final int CANVAS_WIDTH  = 640;
-   public static final int CANVAS_HEIGHT = 480;
+   public static final int CANVAS_WIDTH  = 840;
+   public static final int CANVAS_HEIGHT = 680;
    MNTDessin MNT1;
+   List<Color> couleur;
   
    
    
@@ -28,8 +29,9 @@ public class Affichage2D extends JFrame {
    private Dessin2D canvas;
  
    // Constructor to set up the GUI components and event handlers
-   public Affichage2D(MNTDessin MNTDessin) {
-	   this.MNT1 = MNTDessin;
+   public Affichage2D(MNTDessin MNTDessin, List<Color> couleur) {
+	  this.MNT1 = MNTDessin;
+	  this.couleur = couleur;
       canvas = new Dessin2D();    // Construct the drawing canvas
       canvas.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
  
@@ -66,10 +68,22 @@ public class Affichage2D extends JFrame {
          g.setColor(Color.YELLOW);
          for(int i=0; i<MNT1.getCourbes().size(); i++)	{
         	 Courbe niveau = MNT1.getCourbes().get(i);
+        	 Color couleurCourbe = couleur.get(i);
+        	 g.setColor(couleurCourbe);
         	 for(int j=0; j<niveau.getPoints().size() - 1; j++)	{
         		 Graphics2D g2d = (Graphics2D) g;
-        		 BasicStroke bs1 = new BasicStroke(5); // pinceau du contour : taille 5
-         		 g2d.setStroke(bs1);
+        		 if(couleurCourbe == Color.YELLOW)	{
+        			 BasicStroke bs1 = new BasicStroke(1); // pinceau du contour : taille 1
+        			 g2d.setStroke(bs1);
+        		 }
+        		 if(couleurCourbe == Color.RED)	{
+        			 BasicStroke bs1 = new BasicStroke(3); // pinceau du contour : taille 3
+        			 g2d.setStroke(bs1);
+        		 }
+        		 if(couleurCourbe == Color.GREEN)	{
+        			 BasicStroke bs1 = new BasicStroke(2); // pinceau du contour : taille 2
+        			 g2d.setStroke(bs1);
+        		 }
          		 if(ProjetMNT.Point.distance(niveau.getPoints().get(j), niveau.getPoints().get(j+1)) <= ProjetMNT.Point.distance(MNT1.getPoints().get(0), MNT1.getPoints().get(5)))	{
          			g.drawLine((int)niveau.getPoints().get(j).getX(), (int)niveau.getPoints().get(j).getY(), (int)niveau.getPoints().get(j+1).getX(), (int)niveau.getPoints().get(j+1).getY());
          		 }
@@ -91,16 +105,6 @@ public class Affichage2D extends JFrame {
 		MNTDessin MNT3Dessin = new MNTDessin(MNT3, 90);
 	    System.out.println(MNT3Dessin.getPoints().get(0).toString());
 	    System.out.println(MNT3Dessin.getPoints().get(1).toString());
-	
-		// Run the GUI codes on the Event-Dispatching thread for thread safety
-	    SwingUtilities.invokeLater(new Runnable() {
-	    	@Override
-	    	public void run() {
-	    		new Affichage2D(MNT3Dessin); // Let the constructor do the job
-	        }
-	    });
-	    
-		
 	    
    }
 
