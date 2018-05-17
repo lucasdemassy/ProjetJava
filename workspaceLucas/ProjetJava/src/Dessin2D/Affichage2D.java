@@ -19,17 +19,21 @@ public class Affichage2D extends JFrame {
    // Define constants
    public static final int CANVAS_WIDTH  = 840;
    public static final int CANVAS_HEIGHT = 680;
-   MNTDessin MNT1;
-   List<Color> couleur;
-  
-   
-   
+   private MNTDessin MNT1;
+   private List<Color> couleur;
    // Declare an instance of the drawing canvas,
    // which is an inner class called Dessin2D extending javax.swing.JPanel.
    private Dessin2D canvas;
  
    // Constructor to set up the GUI components and event handlers
    public Affichage2D(MNTDessin MNTDessin, List<Color> couleur) {
+	   /**
+	    * Constructeur de la fenêtre d'affichage
+	    * 
+	    * @param MNTDessin: MNT qui sera affiché
+	    * @param couleur: Liste des couleurs que devra prendre les courbes de niveaux
+	    * 
+	    */
 	  this.MNT1 = MNTDessin;
 	  this.couleur = couleur;
       canvas = new Dessin2D();    // Construct the drawing canvas
@@ -54,16 +58,15 @@ public class Affichage2D extends JFrame {
       public void paintComponent(Graphics g) {
          super.paintComponent(g);     // paint parent's background
          setBackground(Color.BLACK);  // set background color for this JPanel
-         g.setColor(Color.YELLOW);
          for(int i=0; i<MNT1.getPoints().size(); i++)	{
         	 if (MNT1.getPoints().get(i).getZ() == 0)	{
-        		 g.setColor(Color.BLUE);
+        		 g.setColor(Color.BLUE);	//On colorie en bleu les points au niveau de la mer
         	 }
-        	 else	{
+        	 else	{	//Sinon, on les colorie en fonction de leur altitude 
+        		 		//(noir est l'altitude minimale, et blanc est l'altitude maximale du MNT)
         		 g.setColor(Color.getHSBColor(0, 0, (float) MNT1.getPoints().get(i).getZ() / (float) MNTDessin.zMax(MNT1.getPoints())));
-        	 }
-        	 g.fillOval((int)MNT1.getPoints().get(i).getX(), (int)MNT1.getPoints().get(i).getY(), 5, 5);
-        	 
+        	 }	//On dessine 
+        	 g.fillOval((int)MNT1.getPoints().get(i).getX(), (int)MNT1.getPoints().get(i).getY(), 5, 5);	
         	 }
          g.setColor(Color.YELLOW);
          for(int i=0; i<MNT1.getCourbes().size(); i++)	{
