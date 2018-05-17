@@ -47,14 +47,13 @@ public class Courbe {
 			System.out.println("Taille nulle de la liste de point en entrée");
 			return null;
 		}
-		List<Point> liste_triee     = new ArrayList<Point>();
-		List<Courbe> liste_return   = new ArrayList<Courbe>();
-		List<Point> partie1         = new ArrayList<Point>();
-		List<Point> partie2         = new ArrayList<Point>();
-		List<Double> liste_distance = new ArrayList<Double>();
-		boolean continuer           = true;
-		liste_triee.add(points.get(0));
-		points.remove(0);
+		List<Point> liste_triee     = new ArrayList<Point>();	//Liste qui trie de proche en proche la liste d'entrée 
+		List<Courbe> liste_return   = new ArrayList<Courbe>();	//Liste finale qui sera retourné par la méthode
+		List<Point> partie1         = new ArrayList<Point>();	//Sous-liste de la liste triée
+		List<Point> partie2         = new ArrayList<Point>();	//Sous-liste de la liste triée
+		List<Double> liste_distance = new ArrayList<Double>();	//Liste qui contient les distances entre deux points voisins dans la liste triée
+		liste_triee.add(points.get(0));	//On prend arbitrairement comme point de départ le premier élément de la liste d'entrée
+		points.remove(0);	//Et on enlève ce même point pour ne pas le re-choisir
 		while(liste_triee.size() < taille_liste)	{
 			Point pointPlusProche = Point.plusProche(liste_triee.get(liste_triee.size() - 1), points);
 			liste_triee.add(pointPlusProche);	//On choisit ce point 
@@ -65,19 +64,18 @@ public class Courbe {
 		for(int i=0; i<liste_triee.size() - 1; i++)	{
 			if(liste_triee.get(i).egal(liste_triee.get(i+1)))	{
 				liste_triee.remove(i);
-				i --;
+				i --;	//Si un élément est supprimé, l'itérateur doit rester en place pour ne pas sauter de valeurs
 			}
 		}
-		for(int i=0; i<liste_triee.size() - 1; i++)	{
+		for(int i=0; i<liste_triee.size() - 1; i++)	{	//Ajout des distances, entre points voisins de la liste triée, dans une liste dédiée
 			double distance = Point.distance(liste_triee.get(i), liste_triee.get(i+1));
 			liste_distance.add(distance);
-			
 		}
-		continuer = true;
+		boolean continuer = true;
 		for(int k=0; k<liste_distance.size(); k++)	{
-			if(continuer)	{	//Tant qu'on a pas rencontré une distance n'étant pas d'ans l'intervalle de confiance à 95%
-				if(liste_distance.get(k) >= 1.5*(liste_distance.get(0) + liste_distance.get(liste_distance.size() - 1)))	{
-					continuer = false;
+			if(continuer)	{	//Tant qu'on a pas rencontré une distance anormalement grande
+				if(liste_distance.get(k) >= 1.5*(liste_distance.get(0) + liste_distance.get(liste_distance.size() - 1)))	{	//Critère arbitraire
+					continuer = false;	//Si on a rencontré une distance trop grande, on divise la liste triée en deux parties
 					partie1.add(liste_triee.get(k));
 				}
 				else	{
@@ -88,11 +86,12 @@ public class Courbe {
 				partie2.add(liste_triee.get(k));
 			}
 		}
-		if(continuer)	{	//Si pas de distance trop grande rencontrée
-			partie1.add(liste_triee.get(liste_triee.size() -1));
-			liste_return.add(new Courbe(partie1, modele));
+		if(continuer)	{	//Si pas de distance anormalement grande rencontrée
+			partie1.add(liste_triee.get(liste_triee.size() -1));	//Cela veut dire que la liste triée ne contient qu'une courbe de niveau
+			liste_return.add(new Courbe(partie1, modele));	
 		}
-		else	{
+		else	{	//Sinon cela veut dire que la première partie correspond à une courbe ou un morceau de courbe.
+					//La seconde partie va être traiter récursivement par la méthode planAltimetrique
 			partie2.add(liste_triee.get(liste_triee.size() - 1));
 			Courbe courbe1 = new Courbe(partie1, modele);
 			liste_return.add(courbe1);
