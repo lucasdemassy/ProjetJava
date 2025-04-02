@@ -47,14 +47,19 @@ Afin de rendre ce projet possible nous envisagerons un certain nombre d’hypoth
 Pour les courbes de niveau, on considérera dans un premier temps qu’elles ne peuvent passer que par des points déjà existants, puis qu’elles pourront passer entre 2 points déjà présents. Pour cela on supposera que l’altitude varie linéairement entre ces 2 points. 
 
 
-Explocation des diffé
-
-
-
-
 Pour résumer :
 
 On souhaite donner à l’utilisateur un outil qui permet de visualiser en 2D ou 3D un MNT (Modèle Numérique de Terrain) à partir de données fournies (le cas échéant, un MNT sera créé aléatoirement).
 L’utilisateur pourra afficher une ou plusieurs courbe(s) de niveau, avec une altitude fourni par celui-ci.
 Il pourra également visualiser l’ensemble du MNT avec ses courbes de niveau dont le pas sera choisi par l’utilisateur. Puis afficher des courbes de niveau dont le pas sera plus grand, avec un affichage superposé aux courbes de niveau précédentes.
 
+
+
+20250204
+--> Je teste une modification
+
+
+20250205
+--> Je teste une autre modification
+
+Je fais pipi
